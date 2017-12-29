@@ -7,6 +7,10 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { FCM } from '@ionic-native/fcm';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
+import { Camera } from '@ionic-native/camera';
+
 import { IonicStorageModule } from '@ionic/storage';
 
 import { ConferenceApp } from './app.component';
@@ -28,7 +32,6 @@ import { SupportPage } from '../pages/support/support';
 
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
-
 
 @NgModule({
   declarations: [
@@ -93,7 +96,12 @@ import { UserData } from '../providers/user-data';
     ConferenceData,
     UserData,
     InAppBrowser,
-    SplashScreen
+    SplashScreen,
+    FirebaseAnalytics,
+    FCM,
+    Camera
   ]
 })
-export class AppModule { }
+export class AppModule {
+
+ }

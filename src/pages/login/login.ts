@@ -9,7 +9,7 @@ import { UserOptions } from '../../interfaces/user-options';
 
 import { TabsPage } from '../tabs-page/tabs-page';
 import { SignupPage } from '../signup/signup';
-
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 @Component({
   selector: 'page-user',
@@ -19,10 +19,20 @@ export class LoginPage {
   login: UserOptions = { username: '', password: '' };
   submitted = false;
 
-  constructor(public navCtrl: NavController, public userData: UserData) { }
+  constructor(
+    private firebaseAnalytics: FirebaseAnalytics,
+    public navCtrl: NavController, public userData: UserData) { }
 
   onLogin(form: NgForm) {
     this.submitted = true;
+
+    this.firebaseAnalytics.logEvent('login_event', { page: "login_page" })
+      .then((res: any) => console.log(res))
+      .catch((error: any) => console.error(error));
+
+    this.firebaseAnalytics.logEvent('my_custom_event', { page: "login_page" })
+      .then((res: any) => console.log(res))
+      .catch((error: any) => console.error(error));
 
     if (form.valid) {
       this.userData.login(this.login.username);
